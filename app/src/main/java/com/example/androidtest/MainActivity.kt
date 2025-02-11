@@ -1,5 +1,6 @@
 package com.example.androidtest
 
+import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
@@ -60,6 +61,13 @@ class MainActivity : AppCompatActivity() {
 
         ButtonUp.setOnClickListener {
             counter++
+            if( counter == 10 ){
+                counter = 0
+                val intent = Intent( this, SuccessActivity::class.java).apply {
+                    putExtra( "name", findViewById<TextView>(R.id.plainTextName).text.toString())
+                }
+                startActivity(intent)
+            }
             counterView.text = counter.toString()
         }
 

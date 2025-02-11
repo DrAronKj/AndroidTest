@@ -12,9 +12,11 @@
         android:layout_height="354dp"
         android:gravity="center"
         android:orientation="vertical"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="199dp">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints">
 
         <TextView
             android:id="@+id/textViewCounter"
@@ -33,6 +35,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="DOWN" />
+
+        <EditText
+            android:id="@+id/plainTextName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="text"
+            tools:text="Name: " />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
