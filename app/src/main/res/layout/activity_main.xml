@@ -5,7 +5,18 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="@drawable/running_abstract">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/my_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        tools:ignore="MissingConstraints" />
 
     <LinearLayout
         android:layout_width="409dp"
@@ -18,11 +29,14 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints">
 
+
         <TextView
             android:id="@+id/textViewCounter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="TextView" />
+            android:text="TextView"
+            android:background="?colorSecondary"
+            android:textColor="?colorOnSecondary"/>
 
         <Button
             android:id="@+id/buttonUp"
@@ -39,10 +53,12 @@
         <EditText
             android:id="@+id/plainTextName"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="62dp"
             android:ems="10"
             android:inputType="text"
-            tools:text="Name: " />
+            tools:text="Name: "
+            android:background="?colorSecondary"
+            android:textColor="?colorOnSecondary"/>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
