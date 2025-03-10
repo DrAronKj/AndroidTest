@@ -57,7 +57,6 @@ class MainActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
         setSupportActionBar(findViewById(R.id.my_toolbar))
-        registerForContextMenu(counterView)
 
         if (savedInstanceState != null) {
             counter = savedInstanceState.getInt("counter", 0)
@@ -107,7 +106,10 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-
+    override fun onCreateContextMenu(menu: ContextMenu?, v: View?, menuInfo: ContextMenu.ContextMenuInfo?) {
+        super.onCreateContextMenu(menu, v, menuInfo)
+        menuInflater.inflate(R.menu.menu_main, menu)
+    }
 
 
 
