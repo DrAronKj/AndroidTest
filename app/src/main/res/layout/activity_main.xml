@@ -34,7 +34,7 @@
             android:id="@+id/textViewCounter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="TextView"
+            android:text="@string/textview"
             android:background="?colorSecondary"
             android:textColor="?colorOnSecondary"/>
 
@@ -42,23 +42,25 @@
             android:id="@+id/buttonUp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="UP" />
+            android:text="@string/up" />
 
         <Button
             android:id="@+id/buttonDown"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="DOWN" />
+            android:text="@string/down" />
 
         <EditText
             android:id="@+id/plainTextName"
             android:layout_width="wrap_content"
             android:layout_height="62dp"
+            android:autofillHints=""
             android:ems="10"
             android:inputType="text"
             tools:text="Name: "
             android:background="?colorSecondary"
-            android:textColor="?colorOnSecondary"/>
+            android:textColor="?colorOnSecondary"
+            tools:ignore="LabelFor" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

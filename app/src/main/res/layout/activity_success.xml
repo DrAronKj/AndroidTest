@@ -16,13 +16,40 @@
         android:layout_marginTop="1dp"
         android:layout_marginEnd="1dp"
         android:layout_marginBottom="1dp"
-        android:text="TextView"
+        android:text="@string/textview2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:background="?colorSecondary"
         android:textColor="?colorOnSecondary"/>
+
+    <RadioGroup
+        android:id="@+id/phoneNumberGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="20dp"
+        tools:ignore="MissingConstraints">
+
+        <RadioButton
+            android:id="@+id/phone1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1234567890" />
+
+        <RadioButton
+            android:id="@+id/phone2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="9876543210" />
+
+        <RadioButton
+            android:id="@+id/phone3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="5551234567" />
+    </RadioGroup>
 
     <Button
         android:id="@+id/buttonSMS"
@@ -32,7 +59,7 @@
         android:layout_marginTop="1dp"
         android:layout_marginEnd="1dp"
         android:layout_marginBottom="1dp"
-        android:text="SMS"
+        android:text="@string/sms"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"

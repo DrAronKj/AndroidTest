@@ -1,13 +1,16 @@
 package com.example.androidtest
 
+import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.content.res.Configuration
 import android.os.Bundle
 import android.util.Log
 import android.view.ContextMenu
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.AdapterView
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
@@ -15,6 +18,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import java.util.Locale
 
 class MainActivity : AppCompatActivity() {
 
@@ -27,7 +31,17 @@ class MainActivity : AppCompatActivity() {
         inflater.inflate(R.menu.menu_main, menu)
         return super.onCreateOptionsMenu(menu)
     }
-    
+
+    @Suppress("DEPRECATION")
+    fun changeLanguage(context: Context, language: String) {
+        val locale = Locale(language)
+        Locale.setDefault(locale)
+        val res = context.resources
+        val config = Configuration(res.configuration)
+        config.setLocale(locale)
+        context.createConfigurationContext(config)
+        res.updateConfiguration(config, res.displayMetrics)
+    }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
@@ -35,6 +49,21 @@ class MainActivity : AppCompatActivity() {
                 counter = 0
                 counterView.text = counter.toString()
                 true
+            }
+
+        }
+        when (item.itemId) {
+            R.id.croatian -> {
+                // Call changeLanguage function with Croatian language code "hr"
+                changeLanguage(this, "hr")
+                recreate()  // Refresh the activity to apply the language change
+                return true
+            }
+            R.id.english -> {
+                // Call changeLanguage function with English language code "en"
+                changeLanguage(this, "en")
+                recreate()  // Refresh the activity to apply the language change
+                return true
             }
         }
         return super.onOptionsItemSelected(item)
@@ -103,6 +132,9 @@ class MainActivity : AppCompatActivity() {
             else
                 counterView.text = counter.toString()
         }
+
+
+        
     }
 
 
