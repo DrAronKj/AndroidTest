@@ -87,6 +87,12 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         setSupportActionBar(findViewById(R.id.my_toolbar))
 
+        val dbHelper = StepDatabaseHelper(this)
+        dbHelper.insertUser("Marko", 10)
+        dbHelper.insertUser("Ana", 10)
+        dbHelper.insertUser("Ivan", 10)
+
+
         if (savedInstanceState != null) {
             counter = savedInstanceState.getInt("counter", 0)
         }
@@ -110,12 +116,17 @@ class MainActivity : AppCompatActivity() {
         ButtonUp = findViewById(R.id.buttonUp)
         ButtonDown = findViewById(R.id.buttonDown)
 
+
         counterView.text = counter.toString()
+
+        val targetSteps = 10
 
         ButtonUp.setOnClickListener {
             counter++
             if( counter == 10 ){
                 counter = 0
+                val ime = findViewById<TextView>(R.id.plainTextName).text.toString()
+                    dbHelper.insertUser(ime, 10)
                 val intent = Intent( this, SuccessActivity::class.java).apply {
                     putExtra( "name", findViewById<TextView>(R.id.plainTextName).text.toString())
                 }

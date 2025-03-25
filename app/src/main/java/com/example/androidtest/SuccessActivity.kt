@@ -13,15 +13,31 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import android.widget.ListView
+import android.widget.ArrayAdapter
 
 class SuccessActivity : AppCompatActivity() {
 
-
+    private lateinit var dbHelper: StepDatabaseHelper
+    private lateinit var listView: ListView
+    private lateinit var clearButton: Button
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+
+        dbHelper = StepDatabaseHelper(this)
+        listView = findViewById(R.id.listView)
+        clearButton = findViewById(R.id.clearButton)
+
+        loadUsers()
+
+        clearButton.setOnClickListener {
+            dbHelper.clearUsers()
+            loadUsers()
+        }
+
         setContentView(R.layout.activity_success)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -61,8 +77,11 @@ class SuccessActivity : AppCompatActivity() {
 
     }
 
-
-
+    private fun loadUsers() {
+        val users = dbHelper.getUsersWith10Steps()
+        val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, users)
+        listView.adapter = adapter
+    }
 
     private fun sendSms(phoneNumber: String, message: String) {
         // Implicitni Intent za otvaranje SMS aplikacije

@@ -16,39 +16,51 @@
         android:layout_marginTop="1dp"
         android:layout_marginEnd="1dp"
         android:layout_marginBottom="1dp"
+        android:background="?colorSecondary"
         android:text="@string/textview2"
+        android:textColor="?colorOnSecondary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:background="?colorSecondary"
-        android:textColor="?colorOnSecondary"/>
+        app:layout_constraintVertical_bias="0.766" />
 
     <RadioGroup
         android:id="@+id/phoneNumberGroup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
         android:orientation="vertical"
-        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="@+id/buttonSMS"
+        app:layout_constraintHorizontal_bias="0.461"
+        app:layout_constraintStart_toStartOf="@+id/buttonSMS"
+        app:layout_constraintTop_toBottomOf="@+id/buttonSMS"
         tools:ignore="MissingConstraints">
 
         <RadioButton
             android:id="@+id/phone1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="1234567890" />
+            android:background="?colorSecondary"
+            android:text="1234567890"
+            android:textColor="?colorOnSecondary" />
 
         <RadioButton
             android:id="@+id/phone2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="9876543210" />
+            android:background="?colorSecondary"
+            android:text="9876543210"
+            android:textColor="?colorOnSecondary" />
 
         <RadioButton
             android:id="@+id/phone3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="5551234567" />
+            android:background="?colorSecondary"
+            android:text="5551234567"
+            android:textColor="?colorOnSecondary" />
     </RadioGroup>
 
     <Button
@@ -65,5 +77,20 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.549" />
+        app:layout_constraintVertical_bias="0.82" />
+
+    <ListView
+        android:id="@+id/listView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        app:layout_constraintTop_toBottomOf="@+id/clearButton"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <Button
+        android:id="@+id/clearButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Obriši popis"
+        tools:ignore="MissingConstraints" />
 </androidx.constraintlayout.widget.ConstraintLayout>
