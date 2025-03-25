@@ -9,4 +9,7 @@
     <string name="hrvatski">Croatian</string>
     <string name="engleski">English</string>
     <string name="success">%1$s you have successfully travelled 10 steps.</string>
+    <string name="obrisPopis">Delete data</string>
+    <string name="resetZero">Reset</string>
+    <string name="ljudi">People who travelled 10 steps :</string>
 </resources>

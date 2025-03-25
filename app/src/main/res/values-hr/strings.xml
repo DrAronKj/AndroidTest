@@ -9,4 +9,7 @@
     <string name="hrvatski">Hrvatski</string>
     <string name="engleski">Engleski</string>
     <string name="success">%1$s uspješno ste došli do 10 koraka.</string>
+    <string name="obrisPopis">Obrisi popis</string>
+    <string name="resetZero">Resetiraj</string>
+    <string name="ljudi">Ljudi koji su napravili 10 koraka :</string>
 </resources>

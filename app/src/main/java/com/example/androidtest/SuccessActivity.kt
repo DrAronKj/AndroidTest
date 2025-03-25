@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.RadioButton
 import android.widget.RadioGroup
@@ -18,31 +19,33 @@ import android.widget.ArrayAdapter
 
 class SuccessActivity : AppCompatActivity() {
 
-    private lateinit var dbHelper: StepDatabaseHelper
-    private lateinit var listView: ListView
-    private lateinit var clearButton: Button
+    private lateinit var dbHelper: DBHelper
+    private lateinit var textView: TextView
+    private lateinit var deleteButton: Button
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
-        dbHelper = StepDatabaseHelper(this)
-        listView = findViewById(R.id.listView)
-        clearButton = findViewById(R.id.clearButton)
-
-        loadUsers()
-
-        clearButton.setOnClickListener {
-            dbHelper.clearUsers()
-            loadUsers()
-        }
-
         setContentView(R.layout.activity_success)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
+        }
+
+        textView = findViewById(R.id.listView)
+        deleteButton = findViewById(R.id.clearButton)
+        dbHelper = DBHelper(this)
+
+        // Prikazivanje popisa imena koji su napravili 10 koraka
+        showUsers()
+
+        // Brisanje popisa iz baze kad se klikne na gumb
+        deleteButton.setOnClickListener {
+            dbHelper.deleteAllUsers()
+            showUsers()  // Osvježavanje popisa nakon brisanja
         }
 
 
@@ -77,10 +80,13 @@ class SuccessActivity : AppCompatActivity() {
 
     }
 
-    private fun loadUsers() {
+    private fun showUsers() {
+        // Dohvaćanje svih korisnika s 10 koraka
         val users = dbHelper.getUsersWith10Steps()
-        val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, users)
-        listView.adapter = adapter
+        val usersList = users.joinToString(",") { it }
+        Log.d("SuccessActivity", "Dohvaćeni korisnici: $users")
+        // Prikazivanje popisa u TextView
+        textView.text = if (users.isNotEmpty()) usersList else "Nema korisnika s 10 koraka"
     }
 
     private fun sendSms(phoneNumber: String, message: String) {

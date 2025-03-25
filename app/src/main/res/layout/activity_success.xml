@@ -8,6 +8,22 @@
     tools:context=".SuccessActivity"
     android:background="@drawable/running_abstract">
 
+    <Button
+        android:id="@+id/buttonSMS"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="1dp"
+        android:text="@string/sms"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.486" />
+
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
@@ -24,13 +40,13 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.766" />
+        app:layout_constraintVertical_bias="0.445" />
 
     <RadioGroup
         android:id="@+id/phoneNumberGroup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="1dp"
+        android:layout_marginTop="4dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="@+id/buttonSMS"
         app:layout_constraintHorizontal_bias="0.461"
@@ -64,33 +80,33 @@
     </RadioGroup>
 
     <Button
-        android:id="@+id/buttonSMS"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="1dp"
-        android:layout_marginEnd="1dp"
-        android:layout_marginBottom="1dp"
-        android:text="@string/sms"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.82" />
-
-    <ListView
-        android:id="@+id/listView"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        app:layout_constraintTop_toBottomOf="@+id/clearButton"
-        tools:layout_editor_absoluteX="0dp" />
-
-    <Button
         android:id="@+id/clearButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Obriši popis"
-        tools:ignore="MissingConstraints" />
+        android:text="@string/obrisPopis"
+        tools:ignore="MissingConstraints"
+        android:background="?colorSecondary"
+        android:textColor="?colorOnSecondary"/>
+
+    <TextView
+        android:id="@+id/listView"
+        android:layout_width="201dp"
+        android:layout_height="59dp"
+        android:background="?colorSecondary"
+        android:text="textView"
+        android:textColor="?colorOnSecondary"
+        app:layout_constraintEnd_toEndOf="@+id/textView3"
+        app:layout_constraintStart_toStartOf="@+id/textView3"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="?colorSecondary"
+        android:text="@string/ljudi"
+        android:textColor="?colorOnSecondary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/clearButton"
+        app:layout_constraintTop_toBottomOf="@+id/clearButton" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -12,6 +12,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.AdapterView
 import android.widget.Button
+import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -26,11 +27,9 @@ class MainActivity : AppCompatActivity() {
     private lateinit var sharedPreferences: SharedPreferences
     private lateinit var counterView: TextView
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        val inflater = menuInflater
-        inflater.inflate(R.menu.menu_main, menu)
-        return super.onCreateOptionsMenu(menu)
-    }
+    private lateinit var name: EditText
+    private var steps = 0
+    private lateinit var dbHelper: DBHelper
 
     @Suppress("DEPRECATION")
     fun changeLanguage(context: Context, language: String) {
@@ -87,15 +86,14 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         setSupportActionBar(findViewById(R.id.my_toolbar))
 
-        val dbHelper = StepDatabaseHelper(this)
-        dbHelper.insertUser("Marko", 10)
-        dbHelper.insertUser("Ana", 10)
-        dbHelper.insertUser("Ivan", 10)
-
-
         if (savedInstanceState != null) {
             counter = savedInstanceState.getInt("counter", 0)
         }
+
+        val dbHelper = DBHelper(this)
+        dbHelper.addUser("Marko", 10)
+        dbHelper.addUser("Ana", 10)
+        dbHelper.addUser("Ivan", 10)
 
         sharedPreferences = getPreferences(MODE_PRIVATE)
 
@@ -119,14 +117,14 @@ class MainActivity : AppCompatActivity() {
 
         counterView.text = counter.toString()
 
-        val targetSteps = 10
+        name = findViewById(R.id.plainTextName)
 
         ButtonUp.setOnClickListener {
+            val name = name.text.toString()
             counter++
             if( counter == 10 ){
                 counter = 0
-                val ime = findViewById<TextView>(R.id.plainTextName).text.toString()
-                    dbHelper.insertUser(ime, 10)
+                dbHelper.addUser(name, 10)
                 val intent = Intent( this, SuccessActivity::class.java).apply {
                     putExtra( "name", findViewById<TextView>(R.id.plainTextName).text.toString())
                 }
@@ -145,13 +143,36 @@ class MainActivity : AppCompatActivity() {
         }
 
 
-        
+        registerForContextMenu(counterView)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        val inflater = menuInflater
+        inflater.inflate(R.menu.menu_main, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    // Obrada stavki iz kontekstualnog izbornika
+    override fun onContextItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.reset -> {
+                counter = 0
+                counterView.text = counter.toString()
+                true
+            }
+            else -> super.onContextItemSelected(item)
+        }
     }
 
 
     override fun onCreateContextMenu(menu: ContextMenu?, v: View?, menuInfo: ContextMenu.ContextMenuInfo?) {
         super.onCreateContextMenu(menu, v, menuInfo)
-        menuInflater.inflate(R.menu.menu_main, menu)
+        if (v == counterView) {
+            menuInflater.inflate(R.menu.menu_float, menu)
+        }
+        else {
+            menuInflater.inflate(R.menu.menu_main, menu)
+        }
     }
 
 
